@@ -220,3 +220,6 @@ __marimo__/
 # Model weights and generated predictions
 *.pt
 runs/
+# Local test images
+sample_images/*
+!sample_images/.gitkeep
