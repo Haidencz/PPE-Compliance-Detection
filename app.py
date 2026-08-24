@@ -1,4 +1,5 @@
 from collections import Counter
+from io import BytesIO
 from pathlib import Path
 
 import numpy as np
@@ -50,9 +51,6 @@ uploaded_image = st.file_uploader(
 if uploaded_image is not None:
     image = Image.open(uploaded_image).convert("RGB")
 
-    st.subheader("Original image")
-    st.image(image, use_container_width=True)
-
     if st.button("Run PPE detection", type="primary"):
         with st.spinner("Analysing image..."):
             results = model.predict(
@@ -61,12 +59,17 @@ if uploaded_image is not None:
             )
 
             result = results[0]
-
-            # Ultralytics returns a BGR image, so convert it to RGB.
             annotated_image = result.plot()[:, :, ::-1]
 
-        st.subheader("Detection result")
-        st.image(annotated_image, use_container_width=True)
+        original_column, result_column = st.columns(2)
+
+        with original_column:
+            st.subheader("Original image")
+            st.image(image, use_container_width=True)
+
+        with result_column:
+            st.subheader("Detection result")
+            st.image(annotated_image, use_container_width=True)
 
         detected_classes = [
             model.names[int(box.cls.item())]
@@ -98,7 +101,22 @@ if uploaded_image is not None:
 
         if violation_count > 0:
             st.warning(
-                f"{violation_count} possible PPE violation(s) detected."
+                f"{violation_count} possible missing-PPE item(s) detected detected. "
+                "This is not a count of unique workers."
             )
         else:
             st.success("No PPE violations detected.")
+
+        download_buffer = BytesIO()
+        Image.fromarray(annotated_image).save(
+            download_buffer,
+            format="JPEG",
+            quality=95
+        )
+
+        st.download_button(
+            label="Download annotated image",
+            data=download_buffer.getvalue(),
+            file_name="ppe_detection_result.jpg",
+            mime="image/jpeg"
+        )
