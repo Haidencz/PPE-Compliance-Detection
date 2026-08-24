@@ -67,3 +67,90 @@ The training notebook is available in `notebooks/PPE_Model_Training.ipynb`.
 | Test | 0.884 | 0.640 | 0.708 | 0.421 |
 
 The HO test results show that the model's predictions are usually precise, although its lower recall means that it still misses some objects such as a maskless woman in the image above (though it did pick out the other two maskless men). Performance was strongest for hard hats, people and safety vests, while safety cones were more difficult to localise accurately.
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone <your-repository-url>
+cd PPE-Compliance-Detection
+```
+
+Create a virtual environment:
+
+```bash
+python -m venv .venv
+```
+
+Activate it on Windows PowerShell:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+Activate it on macOS or Linux:
+
+```bash
+source .venv/bin/activate
+```
+
+Install the dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Running the Application
+
+Start the Streamlit application from the repository's main directory:
+
+```bash
+streamlit run app.py
+```
+
+Then:
+
+1. Upload a JPG, JPEG or PNG construction-site image.
+2. Select a confidence threshold.
+3. Click **Run PPE detection**.
+4. Review the labelled image and detection summary.
+
+The trained model is stored at `models/ppe_best.pt`, so retraining is not required to run the application.
+
+## Project Structure
+
+```text
+PPE-Compliance-Detection/
+├── models/
+│   └── ppe_best.pt
+├── notebooks/
+│   └── PPE_Model_Training.ipynb
+├── sample_images/
+├── src/
+│   ├── inspect_dataset.py
+│   ├── test_detection.py
+│   ├── test_ppe_model.py
+│   └── visualize_labels.py
+├── app.py
+├── requirements.txt
+└── README.md
+```
+
+## Limitations
+
+- The validation and test splits are relatively small.
+- Some classes contain considerably more examples than others.
+- The downloaded training split already contains augmented images.
+- Performance may decrease on images that differ from the construction-site training data.
+- Missing-item detections are not currently associated with unique workers.
+- The model can produce incorrect or missed detections, particularly for small or partially obscured objects.
+- This is an experimental portfolio project and should not be used as the sole basis for real workplace-safety decisions.
+
+## Dataset Attribution
+
+Construction Site Safety Dataset, Roboflow Universe Projects, version 27:
+
+https://universe.roboflow.com/roboflow-universe-projects/construction-site-safety/dataset/27
+
+Dataset licence: CC BY 4.0.
