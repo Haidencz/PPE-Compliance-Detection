@@ -2,11 +2,14 @@
 
 A computer vision application that detects personal protective equipment and potential safety violations in construction-site images.
 
+<img width="2227" height="858" alt="image" src="https://github.com/user-attachments/assets/5924288f-972c-4cbf-ab8e-5046748a7794" />
+
+
 ## Overview
 
-This project uses a fine-tuned YOLO11n object-detection model to identify workers, safety equipment and missing PPE. Users can upload an image through a Streamlit interface, view the model's bounding-box predictions and adjust the minimum confidence threshold.
+This project uses a fine-tuned YOLO11n object-detection model to identify workers, safety equipment and missing PPE. Users can upload an image through a Streamlit interface, view the model's bounding box predictions and adjust the minimum confidence threshold.
 
-I built the project to practise transfer learning, object detection, dataset analysis and model evaluation using a practical workplace-safety problem.
+I built the project to practise transfer learning, object detection, dataset analysis and model evaluation using a practical workplace safety problem.
 
 ## Features
 
@@ -145,7 +148,7 @@ PPE-Compliance-Detection/
 - Performance may decrease on images that differ from the construction-site training data.
 - Missing-item detections are not currently associated with unique workers.
 - The model can produce incorrect or missed detections, particularly for small or partially obscured objects.
-- This is an experimental portfolio project and should not be used as the sole basis for real workplace-safety decisions.
+- This is an experimental portfolio project and should not be used as the sole basis for real workplace safety decisions.
 
 ## Dataset Attribution
 
