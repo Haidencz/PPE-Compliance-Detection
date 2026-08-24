@@ -73,7 +73,7 @@ The HO test results show that the model's predictions are usually precise, altho
 Clone the repository:
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/Haidencz/PPE-Compliance-Detection.git
 cd PPE-Compliance-Detection
 ```
 
