@@ -223,3 +223,10 @@ runs/
 # Local test images
 sample_images/*
 !sample_images/.gitkeep
+# Dataset archives
+*.zip
+# Training dataset
+data/
+
+# Keep our trained model, but ignore other model weights
+!models/ppe_best.pt
