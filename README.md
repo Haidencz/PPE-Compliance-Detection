@@ -2,6 +2,8 @@
 
 A computer vision application that detects personal protective equipment and potential safety violations in construction-site images.
 
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ppe-compliance-detection-haidencz.streamlit.app/)
+
 <img width="2227" height="858" alt="image" src="https://github.com/user-attachments/assets/5924288f-972c-4cbf-ab8e-5046748a7794" />
 
 
